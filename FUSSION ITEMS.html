@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion Chocolates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #8ec9d7;
+        }
+        h1 {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 3rem;
+            color: #bc7979;
+            margin: 20px;
+        }
+        .banner {
+            width: 100%;
+            height: 6cm;
+            background-image: url('banner-image.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .banner h1 {
+            color: rgb(239, 127, 63);
+            font-size: 4rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px #000;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #7ec9e4;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        .logo-link {
+            background-color: transparent;
+            padding: 0;
+            margin-left: 20px;
+        }
+
+        .logo {
+            height: 40px;
+            width: 60px;
+            padding: 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        
+        .cart-link {
+            background-color: transparent;
+            padding: 0;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .cart-symbol {
+            font-size: 20px;
+        }
+        
+        .cart-text {
+            margin-left: 5px;
+            color: white;
+        }
+        
+        .section {
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #287abe;
+            border: 1px solid #3b3333;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 1200px;
+        }
+        .section-heading {
+            font-size: 2rem;
+            color: #f05817;
+            margin-bottom: 20px;
+        }
+        .chocolate-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #a3d3c6;
+            border-radius: 8px;
+        }
+        .chocolate-item {
+            border: 3px solid #3da847;
+            border-radius: 5px;
+            width: 200px;
+            height: 250px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ebe7a7;
+        }
+        .chocolate-item img {
+            max-width: 180px;
+            max-height: 140px;
+        }
+        .chocolate-item button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .chocolate-item button:hover {
+            background-color: #218838;
+        }
+        .cart-details {
+            margin-top: 30px;
+            font-size: 1.5rem;
+        }
+        .payment-section {
+            margin-top: 40px;
+        }
+        .payment-section div {
+            margin: 15px 0;
+        }
+        .total {
+            font-weight: bold;
+        }
+        .payment-section {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #ebe7a7;
+            border-radius: 8px;
+        }
+        .payment-option {
+            margin: 15px 0;
+        }
+        .total {
+            font-weight: bold;
+        }
+
+        .top-box {
+            position: fixed;
+            top: 25px;
+            left: 10px;
+            background-color: #8b8989;
+            color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 1000;
+        }
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            background-color: #333;
+        }
+        .header a:hover {
+            background-color: #ae3939;
+        }
+
+        /* New styles for filter and sort section */
+        .filter-sort-section {
+            background-color: #e3f2fd;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .filter-sort-section label {
+            font-size: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .filter-sort-section select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-left: 5px;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="header">
+        <a href="home.html" class="logo-link">
+            <img src="WhatsApp Image 2025-01-21 at 19.02.54_fc26e09e.jpg" alt="Fusion Chocolates Logo" class="logo">
+        </a>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="F1.html">FUSSION</a>
+            <a href="luex collection.HTML">LUEX</a>
+            <a href="about.html">About Us</a>
+            <a href="about.html">Contact Us</a>
+        </div>
+        <a href="cart.html" class="cart-link">
+            <span class="cart-symbol">🛒</span>
+            <span class="cart-text">Cart</span>
+        </a>
+        <a href="note.html" class="cart-link" style="margin-left:10px;">
+            <span class="cart-symbol">📝</span>
+            <span class="cart-text">Note</span>
+        </a>
+
+        
+    </div>
+    <div class="banner">
+        
+        <h1>
+            <br>
+            
+            Fusion Chocolates</h1>
+    </div>
+
+    <!-- Simple Filter and Sort Controls -->
+    <div class="filter-sort-section">
+        <label for="categoryFilter">Category:
+            <select id="categoryFilter">
+                <option value="all">All</option>
+                <option value="normal">Normal</option>
+                <option value="special">Special</option>
+                <option value="premium">Premium</option>
+                <option value="custom">Customize</option>
+            </select>
+        </label>
+        <label for="priceFilter" style="margin-left:20px;">Price:
+            <select id="priceFilter">
+                <option value="all">All</option>
+                <option value="lt500">Below ₹500</option>
+                <option value="500to1000">₹500 - ₹1000</option>
+                <option value="gt1000">Above ₹1000</option>
+            </select>
+        </label>
+        <label for="sortSelect" style="margin-left:20px;">Sort:
+            <select id="sortSelect">
+                <option value="default">Default</option>
+                <option value="priceLow">Price: Low to High</option>
+                <option value="priceHigh">Price: High to Low</option>
+            </select>
+        </label>
+    </div>
+
+    <!-- Normal Chocolates Section -->
+    <div class="section" id="normalSection">
+        <h2 class="section-heading">Normal Chocolates</h2>
+        <div class="chocolate-container">
+            <div class="chocolate-item" data-price="199">
+                <img src="fcn.jpg" alt="Normal Chocolate 1">
+                <p>Price: ₹109</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="199">
+                <img src="fcn.webp" alt="Normal Chocolate 2">
+                <p>Price: ₹129</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="199">
+                <img src="fcn1.jpg" alt="Normal Chocolate 1">
+                <p>Price: ₹149</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="199">
+                <img src="fcn2.webp" alt="Normal Chocolate 2">
+                <p>Price: ₹179</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Special Chocolates Section -->
+    <div class="section" id="specialSection">
+        <h2 class="section-heading">Special Chocolates</h2>
+        <div class="chocolate-container">
+            <div class="chocolate-item" data-price="599">
+                <img src="fcs1.jpg" alt="Special Chocolate 1">
+                <p>Price: ₹519</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="599">
+                <img src="fcs2.jpg" alt="Special Chocolate 2">
+                <p>Price: ₹630</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="599">
+                <img src="fcs3.jpg" alt="Special Chocolate 1">
+                <p>Price: ₹539</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="599">
+                <img src="fcs4.webp" alt="Special Chocolate 2">
+                <p>Price: ₹579</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Chocolates Section -->
+    <div class="section" id="premiumSection">
+        <h2 class="section-heading">Premium Chocolates</h2>
+        <div class="chocolate-container">
+            <div class="chocolate-item" data-price="999">
+                <img src="fcp1.jpg" alt="Premium Chocolate 1">
+                <p>Price: ₹999</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="999">
+                <img src="fcp2.webp" alt="Premium Chocolate 2">
+                <p>Price: ₹900</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="999">
+                <img src="fcp3.avif" alt="Premium Chocolate 1">
+                <p>Price: ₹950</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="999">
+                <img src="fcp4.jpg" alt="Premium Chocolate 2">
+                <p>Price: ₹1000</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Customize Your Chocolates Section -->
+    <div class="section" id="customSection">
+        <h2 class="section-heading">Customize Your Chocolates</h2>
+        <div class="chocolate-container">
+            <div class="chocolate-item" data-price="1299">
+                <img src="fcc1.webp" alt="Customized Chocolate 1">
+                <p>Price: ₹1499</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="1299">
+                <img src="fcc2.webp" alt="Customized Chocolate 2">
+                <p>Price: ₹1599</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="1299">
+                <img src="fcc3.webp" alt="Customized Chocolate 1">
+                <p>Price: ₹1299</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+            <div class="chocolate-item" data-price="1299">
+                <img src="fcc4.jpg" alt="Customized Chocolate 2">
+                <p>Price: ₹1999</p>
+                <button onclick="addToCart(this)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    
+    
+
+
+
+   
+
+    <script>
+        function addToCart(button) {
+            const item = {
+                name: button.parentElement.querySelector('p').textContent,
+                price: parseInt(button.parentElement.getAttribute('data-price')),
+                imageSrc: button.parentElement.querySelector('img').src
+            };
+    
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            alert('Item added to cart!');
+        }
+    
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if(document.getElementById('cart-badge'))
+                document.getElementById('cart-badge').textContent = cart.length;
+        }
+
+        // --- SIMPLE FILTER & SORT LOGIC ---
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = {
+                normal: document.getElementById('normalSection'),
+                special: document.getElementById('specialSection'),
+                premium: document.getElementById('premiumSection'),
+                custom: document.getElementById('customSection')
+            };
+            const allSections = Object.values(sections);
+            const categoryFilter = document.getElementById('categoryFilter');
+            const priceFilter = document.getElementById('priceFilter');
+            const sortSelect = document.getElementById('sortSelect');
+
+            function getItemPrice(item) {
+                // Always use the displayed price in the <p> tag
+                return parseInt(item.querySelector('p').textContent.replace(/[^\d]/g, ''));
+            }
+
+            function filterAndSort() {
+                // Category filter
+                const catVal = categoryFilter.value;
+                allSections.forEach(sec => sec.style.display = (catVal === 'all' || sec.id.startsWith(catVal)) ? '' : 'none');
+                // Price filter
+                const priceVal = priceFilter.value;
+                document.querySelectorAll('.chocolate-item').forEach(item => {
+                    const price = getItemPrice(item);
+                    let show = true;
+                    if(priceVal === 'lt500') show = price < 500;
+                    else if(priceVal === '500to1000') show = price >= 500 && price <= 1000;
+                    else if(priceVal === 'gt1000') show = price > 1000;
+                    item.style.display = (priceVal === 'all' || show) ? '' : 'none';
+                });
+                // Sort
+                const sortVal = sortSelect.value;
+                Object.values(sections).forEach(section => {
+                    const container = section.querySelector('.chocolate-container');
+                    const items = Array.from(container.children);
+                    if(sortVal === 'priceLow') {
+                        items.sort((a, b) => getItemPrice(a) - getItemPrice(b));
+                    } else if(sortVal === 'priceHigh') {
+                        items.sort((a, b) => getItemPrice(b) - getItemPrice(a));
+                    }
+                    items.forEach(item => container.appendChild(item));
+                });
+            }
+            categoryFilter.addEventListener('change', filterAndSort);
+            priceFilter.addEventListener('change', filterAndSort);
+            sortSelect.addEventListener('change', filterAndSort);
+        });
+
+        // Update the cart badge on page load
+        window.onload = updateCartBadge;
+    </script>
+</body>
+</html>

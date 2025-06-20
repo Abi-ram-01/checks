@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <style>
+        /* Popup animation */
+        .popup-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .popup-image:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Smooth scrolling for the whole page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation Bar Style (Vertical) */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: transparent; /* Set transparent background */
+            color: white;
+            width: 200px; /* Set fixed width for vertical navbar */
+            height: 100%; /* Full height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            z-index: 1;
+        }
+
+        .navbar a {
+            color: white;
+            margin: 15px 0;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        /* Shop Section Style */
+        #shop {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 100px 20px;
+            gap: 10px;
+            margin-left: 220px; /* Ensure space for the vertical navbar */
+            opacity: 0;
+            transform: translateX(-100%); /* Initially hidden to the left */
+            transition: transform 1s ease, opacity 1s ease; /* Slide and fade effect */
+        }
+
+        #shop.show {
+            opacity: 1;
+            transform: translateX(0); /* Slide to normal position */
+        }
+
+        .product {
+            text-align: center;
+            width: 5cm; /* Set the fixed width to 5cm */
+            margin: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* About Section Style */
+        .about-section {
+            padding: 50px 20px;
+            color: white;
+            text-align: center;
+            background-color: transparent; /* Removed background color */
+            opacity: 0;
+            transform: translateX(-100%); /* Initially hidden to the left */
+            transition: transform 1s ease, opacity 1s ease; /* Slide and fade effect */
+        }
+
+        .about-section.show {
+            opacity: 1;
+            transform: translateX(0); /* Slide to normal position */
+        }
+
+        .about-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .about-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .about-box {
+            background-color: #444;
+            color: white;
+            padding: 20px;
+            width: 9cm;
+            height: 200px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /* Contact Section Style */
+        .contact-section {
+            padding: 50px 20px;
+            color: white;
+            text-align: center;
+            background-color: transparent; /* Removed background color */
+            opacity: 0;
+            transform: translateX(-100%); /* Initially hidden to the left */
+            transition: transform 1s ease, opacity 1s ease; /* Slide and fade effect */
+        }
+
+        .contact-section.show {
+            opacity: 1;
+            transform: translateX(0); /* Slide to normal position */
+        }
+
+        .contact-section a {
+            color: #ff0000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; height: 100%; display: flex; flex-direction: column; background-color: black; color: white;">
+
+    <!-- Navigation Bar (Vertical) -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#shop">FUSSION</a>
+        <a href="#shop">LUEX</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#feedback">Feedback</a>
+    </div>
+
+    <!-- Video Background -->
+    <video autoplay muted loop style="position: fixed; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; transform: translate(-50%, -50%); z-index: -1;">
+        <source src="luex.3.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Home Section -->
+    <div id="home" style="padding: 50px 20px; text-align: center; color: white;">
+        <h2>Welcome to FUSSION & LUEX</h2>
+        <p>Explore our premium collection of chocolates and frames and LUEX.</p>
+    </div>
+
+    <!-- Shop Section -->
+    <div id="shop" class="shop-section">
+        <div class="product">
+            <a href="F1.html">
+                <img src="fcl.png" alt="AX Watch" class="popup-image">
+            </a>
+        </div>
+        <div class="product">
+            <a href="luex home.html">
+                <img src="LUEX LOGO.jpg" alt="A1 Watch" class="popup-image">
+            </a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="about-section">
+        <h2>About Our Brands</h2>
+        <div class="about-container">
+            <div class="about-box">
+                <h3>FUSSION CHOCOLATES</h3>
+                <p>Fusion Chocolates is a paradise for chocolate lovers, offering a delightful range of handcrafted treats. From classic flavors to exotic creations, every piece is crafted with passion and premium ingredients. Our mission is to bring joy and indulgence to every moment, ensuring an unforgettable chocolate experience for everyone.</p>
+            </div>
+            <div class="about-box">
+                <h3>LUEX ARTS</h3>
+                <p>Linux Arts is a creative hub where innovation meets elegance. With a focus on design and technology, we aim to celebrate the fusion of artistic expression and open-source principles. Explore a world where every detail reflects passion, functionality, and the spirit of collaboration.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section with Click-to-Call and WhatsApp -->
+    <div id="contact" class="contact-section">
+        <h2>Contact Us</h2>
+        <p>Feel free to reach out to us through any of the following platforms:</p>
+        <p><a href="https://www.instagram.com/fussion_chocolates_?igsh=NnozcXluYmU3bDZm" target="_blank">Instagram for FUSSION</a></p>
+        <p><a href="https://www.instagram.com/luex_arts?igsh=MXY0bDZwYmdmYXFxaA==" target="_blank">Instagram for LUEX</a></p>
+        
+        <p>Mobile: <a href="tel:+918951828425">+91 8951828425</a> | <a href="https://wa.me/918951828425" target="_blank">WhatsApp Chat</a></p>
+        <p>Mobile: <a href="tel:+918919098339">+91 8919098339</a> | <a href="https://wa.me/918919098339" target="_blank">WhatsApp Chat</a></p>
+    </div>
+
+    <!-- Feedback Section -->
+    <div id="feedback" class="contact-section">
+        <h2>Feedback</h2>
+        <p>We value your feedback! Please share your thoughts with us.</p>
+        <p><a href="feedback frontend.html">Give Feedback</a></p>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #222; color: white; text-align: center; padding: 10px; margin-top: 20px;">
+        <p style="margin: 0;">&copy; 2024 FUSSION & LUEX. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to trigger section animation when scrolled into view
+        function scrollToSection(sectionId) {
+            const section = document.querySelector(`#${sectionId}`);
+            if (section) {
+                section.classList.add('show');
+                section.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the section
+            }
+        }
+
+        // Add event listeners to navbar links for smooth scrolling
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault(); // Prevent default anchor behavior
+                const targetId = this.getAttribute('href').substring(1); // Get the target section ID
+                scrollToSection(targetId); // Scroll to the target section
+            });
+        });
+
+        // Add the 'show' class to the relevant sections once the page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('#shop').classList.add('show');
+            document.querySelector('#about').classList.add('show');
+            document.querySelector('#contact').classList.add('show');
+            document.querySelector('#feedback').classList.add('show');
+        });
+    </script>
+</body>
+</html>

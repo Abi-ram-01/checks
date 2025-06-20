@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUSSION & LUEX CART</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000; /* Black background */
+            margin: 0;
+            padding: 0;
+            color: #fff; /* White text */
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff; /* White text */
+            font-size: 2.5rem;
+            margin-top: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Shiny effect */
+        }
+
+        /* Cart Container */
+        .cart-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            background: #1a1a1a; /* Dark gray background */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Shiny border effect */
+        }
+
+        /* Cart Items */
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #333; /* Dark gray border */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background-color: #262626; /* Slightly lighter gray on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1); /* Shiny hover effect */
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 2px solid #444; /* Dark gray border */
+        }
+
+        .cart-item-details {
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+
+        .cart-item-details h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #fff; /* White text */
+        }
+
+        .cart-item-details p {
+            margin: 5px 0;
+            font-size: 1rem;
+            color: #ccc; /* Light gray text */
+        }
+
+        .cart-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-remove {
+            background: #ff4d4d; /* Red for remove button */
+            color: white;
+        }
+
+        .btn-remove:hover {
+            background: #e60000; /* Darker red on hover */
+            transform: scale(1.05);
+        }
+
+        /* Summary Section */
+        .summary {
+            text-align: right;
+            margin-top: 20px;
+            padding: 20px;
+            background: #262626; /* Dark gray background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Shiny effect */
+        }
+
+        .summary p {
+            font-size: 1.2rem;
+            color: #fff; /* White text */
+            margin: 10px 0;
+        }
+
+        .summary p.total {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #fff; /* White text */
+        }
+
+        /* Payment Container */
+        .payment-container {
+            margin-top: 30px;
+            padding: 20px;
+            background: #262626; /* Dark gray background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Shiny effect */
+        }
+
+        .payment-container h2 {
+            text-align: center;
+            color: #fff; /* White text */
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Shiny effect */
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            width: 45%;
+            background: #1a1a1a; /* Dark gray background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); /* Shiny effect */
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Shiny hover effect */
+        }
+
+        .payment-method h3 {
+            font-size: 1.2rem;
+            color: #fff; /* White text */
+            margin-bottom: 15px;
+        }
+
+        .payment-method img {
+            width: 100px;
+            height: 100px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #444; /* Dark gray border */
+        }
+
+        .btn-pay {
+            background: #28a745; /* Green for pay button */
+            color: white;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-pay:hover {
+            background: #218838; /* Darker green on hover */
+            transform: scale(1.05);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-section input,
+        .form-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #444; /* Dark gray border */
+            border-radius: 5px;
+            font-size: 1rem;
+            background: #1a1a1a; /* Dark gray background */
+            color: #fff; /* White text */
+            transition: border-color 0.3s ease;
+        }
+
+        .form-section input:focus,
+        .form-section textarea:focus {
+            outline: none;
+            border-color: #28a745; /* Green border on focus */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .payment-method {
+                width: 100%;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .cart-item-details {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .cart-item-actions {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <h1> FUSSION & LUEX CART</h1>
+        <div id="cart-items">
+            <!-- Dynamic cart items will be added here -->
+        </div>
+        <div class="summary">
+            <p>Subtotal: RS <span id="subtotal">0</span></p>
+            <p>Tax: RS 15</p>
+            <p>Delivery: RS 15</p>
+            <p>Service: RS 15</p>
+            <p class="total">Total: RS <span id="total-price">0</span></p>
+        </div>
+
+        <div class="payment-container">
+            <h2>Payment Options</h2>
+            <div class="payment-methods">
+                <div class="payment-method" id="upi">
+                    <h3>UPI</h3>
+                    <div id="upi-options">
+                        <p id="upi-amount">Amount: RS 0</p>
+                        <button class="btn btn-pay" onclick="showUPIInput()">Enter UPI ID</button>
+                        <div id="upi-input" class="hidden">
+                            <input type="text" placeholder="Enter UPI ID" id="upi-id">
+                            <button class="btn btn-pay" onclick="placeOrder('UPI')">Pay Now</button>
+                        </div>
+                        <button class="btn btn-pay" onclick="showQRCode()">Show QR Code</button>
+                        <div id="qr-code" class="hidden">
+                            <img src="scr1.png" alt="UPI QR Code">
+                            <p id="qr-amount">Amount: RS 0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-method" id="cod">
+                    <h3>Cash on Delivery (COD)</h3>
+                    <p>Verify with your mobile number:</p>
+                    <input type="text" placeholder="Enter Mobile Number" id="cod-mobile">
+                    <button class="btn btn-pay" onclick="verifyCOD()">Verify</button>
+                    <div id="cod-form" class="hidden">
+                        <div class="form-section">
+                            <input type="text" placeholder="Name" id="name">
+                            <input type="text" placeholder="House Number" id="house">
+                            <input type="text" placeholder="Flat Number" id="flat">
+                            <textarea placeholder="Area, City, District" id="address"></textarea>
+                            <input type="text" placeholder="State" id="state">
+                            <input type="text" placeholder="Pin Code" id="pin">
+                            <button class="btn btn-pay" onclick="placeOrder('COD')">Place Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-items');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cartContainer.innerHTML = '';
+
+            let subtotal = 0;
+            cart.forEach((item, index) => {
+                const price = parseFloat(item.price);
+                subtotal += price;
+
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.imageSrc}" alt="${item.name}">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>RS: ${price.toFixed(2)}</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button class="btn btn-remove" onclick="removeItem(${index})">Remove</button>
+                    </div>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
+
+            const tax = 15;
+            const delivery = 15;
+            const service = 15;
+            const total = subtotal + tax + delivery + service;
+
+            document.getElementById('subtotal').textContent = subtotal.toFixed(2);
+            document.getElementById('total-price').textContent = total.toFixed(2);
+            document.getElementById('upi-amount').textContent = `Amount: RS ${total.toFixed(2)}`;
+            document.getElementById('qr-amount').textContent = `Amount: RS ${total.toFixed(2)}`;
+        }
+
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function showUPIInput() {
+            document.getElementById('upi-input').classList.remove('hidden');
+            document.getElementById('qr-code').classList.add('hidden');
+        }
+
+        function showQRCode() {
+            document.getElementById('qr-code').classList.remove('hidden');
+            document.getElementById('upi-input').classList.add('hidden');
+        }
+
+        function verifyCOD() {
+            const mobile = document.getElementById('cod-mobile').value;
+            if (mobile.length === 10 && !isNaN(mobile)) {
+                alert('Mobile number verified successfully. Please enter your delivery details.');
+                document.getElementById('cod-form').classList.remove('hidden');
+            } else {
+                alert('Invalid mobile number. Please try again.');
+            }
+        }
+
+        function placeOrder(paymentMethod) {
+            alert(`Order placed successfully using ${paymentMethod}!`);
+        }
+
+        renderCart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion × Luxe | Contact & Gallery</title>
+    <style>
+        /* ====== GLOBAL STYLES ====== */
+        :root {
+            /* Fusion Chocolates */
+            --choco-dark: #4a2c2a;
+            --choco-gold: #d4af37;
+            --choco-light: #f8f1e5;
+            
+            /* Luxe Arts */
+            --luxe-navy: #1a1a2e;
+            --luxe-bronze: #a67c52;
+            --luxe-cream: #e5d3b3;
+            
+            /* Feedback Colors */
+            --success: #2ecc71;
+            --error: #e74c3c;
+            --warning: #f39c12;
+            --info: #3498db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f1e5 0%, #e5d3b3 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Glassmorphism effect */
+            background: rgba(255,255,255,0.6);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 2rem 0 2rem 0;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--choco-gold), var(--luxe-cream));
+            margin: 1rem auto;
+        }
+
+        /* ====== THANK YOU MESSAGE ====== */
+        .thank-you-message {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .thank-you-message h2 {
+            color: var(--choco-dark);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .thank-you-message p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .thank-you-message .icon {
+            font-size: 4rem;
+            color: var(--choco-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ====== CONTACT FORM STYLES ====== */
+        .contact-section {
+            background: rgba(26,26,46,0.7);
+            color: white;
+            padding: 4rem 0;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 3rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .contact-container {
+            background: rgba(255,255,255,0.85);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: all 0.5s ease;
+        }
+
+        .contact-container h2 {
+            color: var(--choco-dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.7);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--choco-gold);
+            outline: none;
+            box-shadow: 0 0 0 2px var(--choco-gold, #d4af37);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, var(--choco-gold), var(--luxe-bronze));
+            color: #222;
+            padding: 1.2rem 2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(166,124,82,0.18);
+            background: linear-gradient(90deg, var(--luxe-bronze), var(--choco-gold));
+        }
+
+        /* ====== IMAGE GALLERY SECTION ====== */
+        .gallery-section {
+            background: rgba(255,255,255,0.85);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 3rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .gallery-controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        #imageUrl {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255,255,255,0.7);
+        }
+
+        #addImage, #uploadImage {
+            background: linear-gradient(90deg, var(--choco-gold), var(--luxe-bronze));
+            color: #222;
+            padding: 0 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+        }
+
+        #addImage:hover, #uploadImage:hover {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 6px 18px rgba(166,124,82,0.15);
+            background: linear-gradient(90deg, var(--luxe-bronze), var(--choco-gold));
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: rgba(255,255,255,0.7);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 24px rgba(166,124,82,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: rgba(231, 76, 60, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            font-size: 1.3rem;
+            transition: opacity 0.3s, background 0.2s;
+        }
+
+        .gallery-item:hover .delete-btn {
+            opacity: 1;
+        }
+
+        .delete-btn:hover {
+            background: rgba(200, 30, 30, 1);
+        }
+
+        /* Upload button styles */
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            text-align: center;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .upload-container p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        #fileInput {
+            display: none;
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 900px) {
+            .container {
+                padding: 1rem 0 1rem 0;
+            }
+            .contact-container, .gallery-section {
+                padding: 2rem 1rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .contact-section {
+                padding: 2rem 0;
+            }
+            .contact-container, .gallery-section {
+                padding: 1.5rem 0.5rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            .gallery-controls {
+                flex-direction: column;
+            }
+            #addImage, #uploadImage {
+                padding: 0.8rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0.5rem 0 0.5rem 0;
+            }
+        }
+        /* Brand logo styles for left and right fixed positions (maximum size, overlap allowed) */
+        .brand-logo-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: auto;
+            width: 18vw;
+            height: 18vw;
+            min-width: 300px;
+            min-height: 300px;
+            max-width: 600px;
+            max-height: 600px;
+            z-index: 1002;
+            background: rgba(255,255,255,0.98);
+            border-radius: 40px;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.22);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: transform 0.2s;
+        }
+        .brand-logo-fixed.left {
+            left: 0;
+        }
+        .brand-logo-fixed.right {
+            left: auto;
+            right: 0;
+        }
+        .brand-logo-fixed img {
+            width: 98%;
+            height: 98%;
+            object-fit: contain;
+            border-radius: 32px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        }
+        @media (max-width: 900px) {
+            .brand-logo-fixed {
+                width: 32vw;
+                height: 32vw;
+                min-width: 120px;
+                min-height: 120px;
+                max-width: 220px;
+                max-height: 220px;
+            }
+        }
+        @media (max-width: 600px) {
+            .brand-logo-fixed {
+                width: 38vw;
+                height: 38vw;
+                min-width: 80px;
+                min-height: 80px;
+                max-width: 120px;
+                max-height: 120px;
+            }
+            .brand-logo-fixed img {
+                border-radius: 12px;
+            }
+        }
+
+        /* Rectangle style for brand logos */
+        .brand-logo-fixed.rectangle {
+            width: 120px;
+            height: 40px;
+            border-radius: 20px;
+            padding: 5px;
+        }
+        .brand-logo-fixed.rectangle img {
+            border-radius: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Brand Logos Fixed on Both Sides (Rectangle, Large) -->
+    <div class="brand-logo-fixed left rectangle">
+        <img src="fcl.png" alt="FUSSION Logo">
+    </div>
+    <div class="brand-logo-fixed right rectangle">
+        <img src="LUEX LOGO.jpg" alt="LUEX Logo">
+    </div>
+
+    <div class="container">
+        <!-- Thank You Message (Hidden by default) -->
+        <div class="thank-you-message" id="thankYouMessage">
+            <div class="icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Thank You!</h2>
+            <p>Your message has been sent successfully. We'll get back to you soon.</p>
+            <button class="submit-btn" id="backToForm">Send Another Message</button>
+        </div>
+
+        <!-- Contact Form Section -->
+        <section class="contact-section" id="contactSection">
+            <div class="contact-container" id="contactContainer">
+                <h2>Contact Both Brands</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name">
+                        <div id="nameError" class="error-message">Please enter your name</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address">
+                        <div id="emailError" class="error-message">Please enter a valid email</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="brand">Which brand are you contacting?</label>
+                        <select id="brand" name="brand">
+                            <option value="" disabled selected>Select a brand</option>
+                            <option value="both">Both Brands</option>
+                            <option value="choco">Fusion Chocolates</option>
+                            <option value="luxe">Luxe Arts</option>
+                        </select>
+                        <div id="brandError" class="error-message">Please select a brand</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="products">Product Information</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="collaboration">Collaboration Opportunity</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <div id="subjectError" class="error-message">Please select a subject</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" placeholder="Enter your message here..."></textarea>
+                        <div id="messageError" class="error-message">Please enter your message</div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Dynamic Image Gallery Section -->
+        <section class="gallery-section">
+            <h2>Our Gallery</h2>
+            
+            <!-- URL Input Section -->
+            <div class="gallery-controls">
+                <input type="text" id="imageUrl" placeholder="Enter image URL">
+                <button id="addImage">Add Image</button>
+            </div>
+            
+            <!-- File Upload Section -->
+            <div class="upload-container">
+                <p>Or upload an image from your device:</p>
+                <input type="file" id="fileInput" accept="image/*">
+                <button id="uploadImage">Select Image</button>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Gallery images will be dynamically added here -->
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const contactSection = document.getElementById('contactSection');
+            const contactContainer = document.getElementById('contactContainer');
+            const backToFormBtn = document.getElementById('backToForm');
+            
+            // ====== CONTACT FORM VALIDATION ======
+            const contactForm = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const brandSelect = document.getElementById('brand');
+            const subjectSelect = document.getElementById('subject');
+            const messageInput = document.getElementById('message');
+            
+            // Error elements
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const brandError = document.getElementById('brandError');
+            const subjectError = document.getElementById('subjectError');
+            const messageError = document.getElementById('messageError');
+            
+            // Email validation regex
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // Real-time validation
+            nameInput.addEventListener('input', validateName);
+            emailInput.addEventListener('input', validateEmail);
+            brandSelect.addEventListener('change', validateBrand);
+            subjectSelect.addEventListener('change', validateSubject);
+            messageInput.addEventListener('input', validateMessage);
+            
+            // Form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate all fields
+                const isNameValid = validateName();
+                const isEmailValid = validateEmail();
+                const isBrandValid = validateBrand();
+                const isSubjectValid = validateSubject();
+                const isMessageValid = validateMessage();
+                
+                if (isNameValid && isEmailValid && isBrandValid && isSubjectValid && isMessageValid) {
+                    // Form is valid - show thank you message
+                    showThankYouMessage();
+                    
+                    // In a real application, you would send the data to a server here
+                    console.log('Form data:', {
+                        name: nameInput.value,
+                        email: emailInput.value,
+                        brand: brandSelect.value,
+                        subject: subjectSelect.value,
+                        message: messageInput.value
+                    });
+                    
+                    // Reset form
+                    contactForm.reset();
+                    resetErrors();
+                }
+            });
+            
+            // Back to form button
+            backToFormBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                hideThankYouMessage();
+            });
+            
+            // Show thank you message
+            function showThankYouMessage() {
+                contactContainer.style.display = 'none';
+                thankYouMessage.style.display = 'block';
+                contactSection.style.background = 'white';
+            }
+            
+            // Hide thank you message
+            function hideThankYouMessage() {
+                contactContainer.style.display = 'block';
+                thankYouMessage.style.display = 'none';
+                contactSection.style.background = 'linear-gradient(135deg, var(--choco-dark) 0%, var(--choco-dark) 50%, var(--luxe-navy) 50%, var(--luxe-navy) 100%)';
+            }
+            
+            // Validation functions
+            function validateName() {
+                if (nameInput.value.trim() === '') {
+                    nameError.style.display = 'block';
+                    return false;
+                } else {
+                    nameError.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateEmail() {
+                if (emailInput.value.trim() === '') {
+                    emailError.textContent = 'Please enter your email';
+                    emailError.style.display = 'block';
+                    return false;
+                } else if (!emailRegex.test(emailInput.value)) {
+                    emailError.textContent = 'Please enter a valid email';
+                    emailError.style.display = 'block';
+                    return false;
+                } else {
+                    emailError.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateBrand() {
+                if (!brandSelect.value) {
+                    brandError.style.display = 'block';
+                    return false;
+                } else {
+                    brandError.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateSubject() {
+                if (!subjectSelect.value) {
+                    subjectError.style.display = 'block';
+                    return false;
+                } else {
+                    subjectError.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function validateMessage() {
+                if (messageInput.value.trim() === '') {
+                    messageError.style.display = 'block';
+                    return false;
+                } else {
+                    messageError.style.display = 'none';
+                    return true;
+                }
+            }
+            
+            function resetErrors() {
+                nameError.style.display = 'none';
+                emailError.style.display = 'none';
+                brandError.style.display = 'none';
+                subjectError.style.display = 'none';
+                messageError.style.display = 'none';
+            }
+            
+            // ====== IMAGE GALLERY FUNCTIONALITY ======
+            const addImageBtn = document.getElementById('addImage');
+            const uploadImageBtn = document.getElementById('uploadImage');
+            const fileInput = document.getElementById('fileInput');
+            const imageUrlInput = document.getElementById('imageUrl');
+            const galleryGrid = document.getElementById('galleryGrid');
+            
+            // Add image when URL button is clicked
+            addImageBtn.addEventListener('click', function() {
+                const imageUrl = imageUrlInput.value.trim();
+                
+                if (imageUrl) {
+                    if (isValidImageUrl(imageUrl)) {
+                        addImageToGallery(imageUrl);
+                        imageUrlInput.value = '';
+                    } else {
+                        alert('Please enter a valid image URL (jpg, png, gif)');
+                    }
+                } else {
+                    alert('Please enter an image URL');
+                }
+            });
+            
+            // Add image when Enter key is pressed in URL input
+            imageUrlInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    addImageBtn.click();
+                }
+            });
+            
+            // Trigger file input when upload button is clicked
+            uploadImageBtn.addEventListener('click', function() {
+                fileInput.click();
+            });
+            
+            // Handle file selection
+            fileInput.addEventListener('change', function(e) {
+                const files = e.target.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type.match('image.*')) {
+                        const reader = new FileReader();
+                        reader.onload = function(event) {
+                            addImageToGallery(event.target.result);
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        alert('Please select a valid image file (jpg, png, gif)');
+                    }
+                }
+            });
+            
+            // Function to validate image URL
+            function isValidImageUrl(url) {
+                return /\.(jpeg|jpg|gif|png)$/.test(url);
+            }
+            
+            // Function to add an image to the gallery
+            function addImageToGallery(url) {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = 'Gallery image';
+                img.onerror = function() {
+                    alert('Failed to load image. Please check the URL.');
+                    galleryItem.remove();
+                };
+                
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.innerHTML = '×';
+                deleteBtn.addEventListener('click', function() {
+                    galleryItem.remove();
+                });
+                
+                galleryItem.appendChild(img);
+                galleryItem.appendChild(deleteBtn);
+                galleryGrid.appendChild(galleryItem);
+            }
+            
+            // Add delete functionality to existing images
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.parentElement.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

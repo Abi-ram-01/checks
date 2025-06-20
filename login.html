@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Registration</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b, #ffb142, #34ace0, #706fd3);
+            background-size: 300% 300%;
+            animation: backgroundShift 6s infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes backgroundShift {
+            0% { background-position: left top; }
+            100% { background-position: right bottom; }
+        }
+
+        .container {
+            display: flex;
+            width: 80%;
+            height: 80%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .half {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login {
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transform: translateX(100%);
+            transition: transform 0.5S ease-in-out;
+        }
+
+        .register {
+            background-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            transition: transform 0.5S ease-in-out;
+        }
+
+        .form {
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #ff4757;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e84118;
+        }
+
+        .container.active .login {
+            transform: translateX(0);
+        }
+
+        .container.active .register {
+            transform: translateX(-100%);
+        }
+
+        /* Images */
+        .image-container {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: right 1.5s ease-in-out;
+        }
+
+        .image-container.move-left {
+            right: calc(100% - 350px);
+        }
+
+        /* Flip Image Container */
+        .image-wrapper {
+            position: relative;
+            width: 300px;
+            height: 180px;
+            perspective: 1000px;
+        }
+
+        .image-flip {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s ease;
+        }
+
+        .image-flip.flip {
+            transform: rotateY(180deg);
+        }
+
+        .image-flip .front,
+        .image-flip .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            border: 3px solid black;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            backface-visibility: hidden;
+        }
+
+        .image-flip .back {
+            background: linear-gradient(135deg, #2c3e50, #4b6584);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            text-align: center;
+            transform: rotateY(180deg);
+            padding: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Video Intro */
+        #introVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: 100vw;
+            max-height: 100vh;
+            min-width: 100vw;
+            min-height: 100vh;
+            object-fit: cover;
+            z-index: 2;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        #videoOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.5);
+            z-index: 3;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            pointer-events: auto;
+        }
+
+        #videoOverlay button {
+            margin: 0 40px 40px 0;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 8px;
+            background: #ff4757;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+        #videoOverlay button:hover {
+            background: #e84118;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="form-container">
+        <!-- Registration Form -->
+        <div class="half register">
+            <div class="form">
+                <h2>Register</h2>
+                <form id="registerForm" onsubmit="return handleRegistration()">
+                    <label for="register-username">Username:</label>
+                    <input type="text" id="register-username" name="username" required>
+
+                    <label for="register-email">Email:</label>
+                    <input type="email" id="register-email" name="email" required>
+
+                    <label for="register-password">Password:</label>
+                    <input type="password" id="register-password" name="password" required>
+
+                    <label for="register-confirm-password">Confirm Password:</label>
+                    <input type="password" id="register-confirm-password" name="confirm_password" required>
+
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+
+        <!-- Login Form -->
+        <div class="half login">
+            <div class="form">
+                <h2>Login</h2>
+                <form id="loginForm" onsubmit="return handleLogin()">
+                    <label for="login-username">Username:</label>
+                    <input type="text" id="login-username" name="username" required>
+
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="password" required>
+
+                    <input type="submit" value="Login">
+                </form>
+            </div>
+        </div>
+
+        <!-- Images -->
+        <div class="image-container" id="imageContainer">
+            <div class="image-wrapper" onclick="flipImage(this)">
+                <div class="image-flip">
+                    <div class="front">
+                        <img src="fcl.png" alt="Fusion Chocolates" width="300" height="180">
+                    </div>
+                    <div class="back">Fusion Chocolates: Handcrafted Perfection!</div>
+                </div>
+            </div>
+            <div class="image-wrapper" onclick="flipImage(this)">
+                <div class="image-flip">
+                    <div class="front">
+                        <img src="LUEX LOGO.jpg" alt="LUX Arts" width="300" height="180">
+                    </div>
+                    <div class="back">LUX Arts: Bringing Luxury to Creativity!</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Video Introduction -->
+        <video id="introVideo" autoplay muted loop>
+            <source src="IMG_7569.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div id="videoOverlay">
+            <button onclick="closeVideo()">Continue to Login</button>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('form-container');
+        const imageContainer = document.getElementById('imageContainer');
+
+        function handleRegistration() {
+            setTimeout(() => {
+                container.classList.add('active');
+                imageContainer.classList.add('move-left');
+            }, 1000);
+            return false;
+        }
+
+        function handleLogin() {
+            setTimeout(() => {
+                window.location.href = "HOME.html";
+            }, 2000);
+            return false;
+        }
+
+        function flipImage(wrapper) {
+            let flipContainer = wrapper.querySelector('.image-flip');
+            flipContainer.classList.toggle('flip');
+        }
+
+        function closeVideo() {
+            document.getElementById('introVideo').style.display = 'none';
+            document.getElementById('videoOverlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAMILY ARTS</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        /* Background video styling */
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        /* Menu box styling */
+        .menu-box {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 2cm;
+            height: 6cm;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu-box a {
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        /* Cart Icon */
+        .cart-icon {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: white;
+            cursor: pointer;
+            z-index: 3;
+        }
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: red;
+            color: white;
+            font-size: 12px;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        /* Main Heading */
+        .main-heading {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2rem;
+            color: white;
+        }
+        /* Section container */
+        .section-container {
+            width: 60%;
+            margin: 20px auto;
+            background-color: #e1f7d5; /* Light green */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: background-color 0.3s;
+        }
+        .section-container:nth-child(even) {
+            background-color: #f7e1d5; /* Soft peach */
+        }
+        .section-container:nth-child(odd) {
+            background-color: #d5e1f7; /* Soft blue */
+        }
+        .section-container:hover {
+            background-color: #f5a9a9; /* Light coral */
+        }
+        .image-container {
+            padding: 20px;
+            text-align: center;
+            background-color: #eddc6a; /* Vibrant salmon */
+        }
+        .image-container img {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .details-container {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+        }
+        .add-to-cart-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Vibrant green */
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .add-to-cart-btn:hover {
+            background-color: #45a049; /* Slightly darker green */
+        }
+        
+        /* Logo styling */
+        .logo-link {
+            position: fixed;
+            top: 10px;
+            left: 120px;;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite; /* Added animation */
+        }
+
+        .logo {
+            height: 70px; /* Adjusted to 5x5 size */
+            width: 150px; /* Adjusted to 5x5 size */
+            padding: 0;
+            border-radius: 0; /* Square format */
+            object-fit: cover; /* Ensures the image fits properly */
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <a href="home.html" class="logo-link">
+        <img src="LUEX LOGO.jpg" alt="Logo" class="logo">
+    </a>
+
+    <!-- Background Video -->
+    <video autoplay loop muted class="background-video">
+        <source src="lux.01.mp4" type="video/mp4">
+        Your browser does not support HTML5 video.
+    </video>
+
+    <!-- Cart Icon -->
+    <div class="cart-icon">
+        <a href="cart.html" style="text-decoration: none; color: white;">&#128722;</a>
+        <div class="cart-badge" id="cart-badge">0</div>
+    </div>
+
+    <!-- Menu Box -->
+    <div class="menu-box">
+        <a href="home.html">Home</a>
+        <a href="F1.html">FUSSION</a>
+        <a href="luex collection.HTML">LUEX</a>
+        <a href="about.html">About Us</a>
+        <a href="about.html">Contact Us</a>
+    </div>
+
+    <!-- Main Heading -->
+    <h1 class="main-heading">FAMILY ARTS</h1>
+
+    <!-- Section 1 -->
+    <div class="section-container">
+        <div class="image-container">
+            <img src="lf2.jpg" alt="Frame 1">
+        </div>
+        <div class="details-container">
+            <div class="price">RS: 999/-</div>
+            <p class="description">A beautiful frame to cherish memories.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('LC1.jpg', 999)">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section-container">
+        <div class="image-container">
+            <img src="lf3.jpg" alt="Photo Frame 2">
+        </div>
+        <div class="details-container">
+            <div class="price">RS: 1199/-</div>
+            <p class="description">Elegant frame for special occasions.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('LC2.webp', '1199')">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section-container">
+        <div class="image-container">
+            <img src="lh4.jpg" alt="Photo Frame 3">
+        </div>
+        <div class="details-container">
+            <div class="price">RS: 1699/-</div>
+            <p class="description">Classic wooden frame with a soft finish.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('LC3.jpg', '1699')">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section-container">
+        <div class="image-container">
+            <img src="lf5.webp" alt="Photo Frame 4">
+        </div>
+        <div class="details-container">
+            <div class="price">RS: 2499/-</div>
+            <p class="description">Modern design for your aesthetic shorts.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('LC5.webp', '2499')">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section-container">
+        <div class="image-container">
+            <img src="lf6.jpg" alt="Photo Frame 5">
+        </div>
+        <div class="details-container">
+            <div class="price">RS: 2899/-</div>
+            <p class="description">Minimalistic frame for a wild look.</p>
+            <button class="add-to-cart-btn" onclick="addToCart('LC6.jpg', '2899')">Add to Cart</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize cart if not already in localStorage
+        if (!localStorage.getItem('cart')) {
+            localStorage.setItem('cart', JSON.stringify([]));
+        }
+
+        function addToCart(imageSrc, price) {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            cart.push({ imageSrc, price });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartBadge();
+            alert('Item added to cart!');
+        }
+
+        function updateCartBadge() {
+            const cart = JSON.parse(localStorage.getItem('cart'));
+            document.getElementById('cart-badge').textContent = cart.length;
+        }
+
+        // Update the cart badge on page load
+        window.onload = updateCartBadge;
+    </script>
+</body>
+</html>
